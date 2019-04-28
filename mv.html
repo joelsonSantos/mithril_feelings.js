@@ -21,6 +21,7 @@
                             m('p', '{{ value }}'),
                             m.trust('<button @click="value += 5">Add 5</button>'),
                             m.trust('<button @click="value += 1">Add 1</button>'),
+                            m.trust('<h1 v-if="show"> Sai mithilllll</h1>'),
                             m('p', '{{ result }}')
                         ]),
                     ], m('.mt-2'))
@@ -34,11 +35,16 @@
         var VueElement = new Vue({
             el: '#app',
             data: {
-                value: 0
+                value: 0,
+                show: false
             },
             computed: {
                 result: function () {
-                    return (this.value < 37) ? 'not there yet' : 'done' 
+                    if (this.value < 37) {
+                        return 'not there yet'
+                    }
+                    this.show = true
+                  return 'done'
                 }
             },
             watch: {
