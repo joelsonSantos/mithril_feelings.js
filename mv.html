@@ -1,0 +1,54 @@
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+<body>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   <script src="https://unpkg.com/mithril/mithril.js"></script>
+   <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+
+    <script> 
+        var MyComponent = {
+            view: function(vnode) {
+                return m('.card.mt-2', [
+                        m('div#app', [
+                            m('p', '{{ value }}'),
+                            m.trust('<button @click="value += 5">Add 5</button>'),
+                            m.trust('<button @click="value += 1">Add 1</button>'),
+                            m('p', '{{ result }}')
+                        ]),
+                    ], m('.mt-2'))
+            }
+        }
+        var root = document.body
+        m.mount(root, MyComponent)
+    </script>
+
+    <script>
+        var VueElement = new Vue({
+            el: '#app',
+            data: {
+                value: 0
+            },
+            computed: {
+                result: function () {
+                    return (this.value < 37) ? 'not there yet' : 'done' 
+                }
+            },
+            watch: {
+                result: function () {
+                    var element = this;
+                    setTimeout(function () {
+                        element.value = 0
+                    }, 5000)
+                }
+            }
+        })    
+    </script>
+</body>
